@@ -1,20 +1,14 @@
 NAME=libftprintf.a
-LIBFTDIR=libft
-LIBFT=libft/libft.a
 FLAGS=-Wall -Wextra -Werror
 CC=cc
 HDRS=ft_printf.h
-SRCS=ft_printf.c
-HDRS=ft_printf.h
+SRCS=ft_printf.c libft_tools.c print_functions.c print_functions2.c
 OBJS=$(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(LIBFT):
-	make -C $(LIBFTDIR)
-
-$(NAME): $(LIBFT) $(OBJS)
-	ar rc -I $(HDRS) $(NAME) $(OBJS)
+$(NAME): $(OBJS)
+	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
 %.o: %.c $(HDRS)
