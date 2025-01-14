@@ -6,53 +6,52 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:07:01 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/01/13 19:07:41 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:11:34 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     print_u(va_list *ap)
+int	print_u(va_list *ap)
 {
-    int    u;
+	int	u;
 
-    u = va_arg(*ap, unsigned int);
-    return (custom_putnbr_base((unsigned int)u, 10));
+	u = va_arg(*ap, unsigned int);
+	return (custom_putnbr_base((unsigned int)u, 10));
 }
 
-int     print_x(va_list *ap)
+int	print_x(va_list *ap)
 {
-    int    x;
+	int	x;
 
-    x = va_arg(*ap, unsigned int);
-    return (custom_putnbr_base((unsigned int)x, 16));
+	x = va_arg(*ap, unsigned int);
+	return (custom_putnbr_base((unsigned int)x, 16));
 }
 
-int     puthexa_big(unsigned int bx)
+int	puthexa_big(unsigned int bx)
 {
-    char    *base;
-    int     ret;
+	char	*base;
+	int		ret;
 
-    ret = 1;
-    base = "0123456789ABCDEF";
-    if (bx / 16 != 0)
-        ret = 1 + puthexa_big(bx / 16);
-    ft_putchar_fd(base[bx % 16], 1);
-    return (ret);
+	ret = 1;
+	base = "0123456789ABCDEF";
+	if (bx / 16 != 0)
+		ret = 1 + puthexa_big(bx / 16);
+	ft_putchar_fd(base[bx % 16], 1);
+	return (ret);
 }
 
-int     print_bx(va_list *ap)
+int	print_bx(va_list *ap)
 {
-    int    bx;
+	int	bx;
 
-    bx = va_arg(*ap, unsigned int);
-    return (puthexa_big(bx));
+	bx = va_arg(*ap, unsigned int);
+	return (puthexa_big(bx));
 }
 
-int     print_prc(va_list *ap)
+int	print_prc(va_list *ap)
 {
-    (void)ap;
-    ft_putchar_fd('%', 1);
-    return (1);    
+	(void)ap;
+	ft_putchar_fd('%', 1);
+	return (1);
 }
-
